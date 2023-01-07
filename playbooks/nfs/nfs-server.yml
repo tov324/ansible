@@ -3,7 +3,7 @@
   hosts: localhost
   become: yes
   vars:
-    path: "/data"
+    share_path: "/data"
   tasks:
     - name: install package
       apt:
@@ -11,7 +11,7 @@
         state: present
     - name: share directory exists
       file:
-        path: "{{ path }}"
+        path: "{{ share_path }}"
         state: directory
         mode: 0777
         owner: root
@@ -20,7 +20,7 @@
       lineinfile:
         path: /etc/exports
         state: present
-        line: '{{ share }} *(rw,sync,root_squash)'
+        line: '{{ share_path }} *(rw,sync,root_squash)'
       notify: restart NFS server 
     - name: export share
       command: "exportfs -rav"

@@ -1,0 +1,10 @@
+---
+- name: Playbook for NFS Server
+  become: yes
+  tasks:
+    - name: install package
+      apt:
+        name: nfs-kernel-server
+        state: present
+
+    

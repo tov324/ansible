@@ -24,11 +24,10 @@
       notify: restart NFS server 
     - name: export share
       command: "exportfs -rav"
+
   handlers:
-    - name: enable nfs-server service
+    - name: restart NFS server
       systemd:
-        name: nfs-kernel-server.service
+        name: nfs-server.service
         state: restarted
         enabled: true
-
-    

@@ -1,5 +1,6 @@
 ---
 - name: Playbook for NFS Server
+  hosts: localhost
   become: yes
   vars:
     path: "/data"

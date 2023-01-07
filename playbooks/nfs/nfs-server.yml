@@ -1,10 +1,16 @@
 ---
 - name: Playbook for NFS Server
+  hosts: localhost
+  connection: local
   become: yes
   tasks:
     - name: install package
       apt:
         name: nfs-kernel-server
         state: present
+    - name: enable nfs-server service
+      systemd:
+        name: nfs-kernel-server.service
+        enabled: true
 
     
